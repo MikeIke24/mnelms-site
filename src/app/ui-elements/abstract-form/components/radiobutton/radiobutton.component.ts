@@ -1,6 +1,8 @@
 import {Component, HostBinding, OnInit} from '@angular/core';
 import {FormGroup} from '@angular/forms';
 import {FormattedFieldConfig} from '../dynamic-form/dynamic-form.component';
+import {SelectOptions} from '../../field.interface';
+import {isObservable, Observable} from 'rxjs';
 
 @Component({
   selector: 'ui-radiobutton',
@@ -8,7 +10,7 @@ import {FormattedFieldConfig} from '../dynamic-form/dynamic-form.component';
     <div [formGroup]="group" class="form-group-container" [ngStyle]="{'justify-content': field.alignment}">
       <label class="radio-label-padding">{{field.label}}:</label>
       <mat-radio-group [formControlName]="field.name" class="radio-group">
-        <mat-radio-button class="radio-button" *ngFor="let item of field.options" [value]="item">{{item}}</mat-radio-button>
+        <mat-radio-button class="radio-button" *ngFor="let option of this.options" [value]="option">{{option.label}}</mat-radio-button>
       </mat-radio-group>
     </div>
   `,
@@ -43,6 +45,8 @@ export class RadiobuttonComponent implements OnInit {
   field: FormattedFieldConfig;
   group: FormGroup;
 
+  options: SelectOptions[];
+
   constructor() {
   }
 
@@ -50,5 +54,20 @@ export class RadiobuttonComponent implements OnInit {
     this.field.width = this.field.width || '100%';
     this.hostWidth = this.field.rowWidth || '100%';
     this.hostSpan = `span ${this.field.columnSpan || 1}`;
+    this.setOptions();
+  }
+
+  setOptions() {
+    if (!this.isObservable(this.field.options)) {
+      this.options = this.field.options as SelectOptions[];
+    } else {
+      (this.field.options as Observable<SelectOptions[]>).subscribe(options => {
+        this.options = options;
+      });
+    }
+  }
+
+  isObservable(val: any): boolean {
+    return isObservable(val);
   }
 }

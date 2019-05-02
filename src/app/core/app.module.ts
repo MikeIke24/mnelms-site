@@ -15,6 +15,7 @@ import {NotFoundComponent} from '../components/not-found/not-found.component';
 import {SnackbarService} from '../material/snackbar';
 import {ExampleFormComponent} from '../components/example-form/example-form.component';
 import {UiElementsModule} from '../ui-elements/ui-elements.module';
+import {MaterialModule} from '../material/material.module';
 
 @NgModule({
   declarations: [
@@ -29,6 +30,7 @@ import {UiElementsModule} from '../ui-elements/ui-elements.module';
     BrowserAnimationsModule,
     RestModule,
     UiElementsModule,
+    MaterialModule,
     environment.production ?
       [] :
       [AkitaNgDevtools.forRoot(), AkitaNgRouterStoreModule.forRoot()]

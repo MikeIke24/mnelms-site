@@ -19,12 +19,9 @@ import {SectionTextComponent} from './section-text/section-text.component';
 import {SpinnerComponent} from './spinner/spinner.component';
 import {TitleTextComponent} from './title-text/title-text.component';
 import {DataTableComponent} from './data-table/data-table.component';
-import {LevelTwoPageContainerComponent} from '../e2-elements/level-two-page-container/level-two-page-container.component';
-import {LevelTwoSidebarComponent} from '../e2-elements/level-two-sidebar/level-two-sidebar.component';
-import {MaterialModule} from '../../modules/material.module';
-import {AppRoutingModule} from '../../modules/app.routing.module';
-import {LoginAnimationComponent} from '../e2-elements/login-animation/login-animation.component';
 import {DisableControlDirective} from './abstract-form/components/disable-control/disable-control.directive';
+import {AppRoutingModule} from '../routing/app-routing.module';
+import {MaterialModule} from '../material/material.module';
 
 @NgModule({
   declarations: [

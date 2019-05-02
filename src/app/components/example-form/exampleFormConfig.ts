@@ -59,7 +59,7 @@ export const FORM_COFNIG: FieldConfig[] = [
     type: 'radiobutton',
     label: 'Gender',
     name: 'gender',
-    options: ['Male', 'Female'],
+    options: [{label: 'Male', id: 'M'}, {label: 'Female', id: 'F'}],
     value: 'Male',
     alignment: 'flex-start'
   },
@@ -80,7 +80,7 @@ export const FORM_COFNIG: FieldConfig[] = [
     label: 'Country',
     name: 'country',
     value: 'UK',
-    options: ['India', 'UAE', 'UK', 'US'],
+    options: [{label: 'India', id: 'IN'}, {label: 'UAE', id: 'UE'}],
   },
   {
     type: 'checkbox',

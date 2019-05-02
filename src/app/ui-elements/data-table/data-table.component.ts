@@ -4,8 +4,16 @@ import {SelectionModel} from '@angular/cdk/collections';
 import {merge, Observable, of} from 'rxjs';
 import {animate, state, style, transition, trigger} from '@angular/animations';
 import {catchError, delay, map, startWith, switchMap} from 'rxjs/operators';
-import {PaginatedResponseMetadata} from '../../../state/models/user/user.response.model';
 import {HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
+
+export interface PaginatedResponseMetadata {
+  totalResults: number;
+  page: number;
+  pageSize: number;
+  start: number;
+  end: number;
+  listSize: number;
+}
 
 export interface MatTableDataLoad<T> {
   data?: T[];
@@ -146,7 +154,7 @@ export class DataTableComponent implements AfterViewInit {
       this.columnNameMap = dataLoad.columnNameMap;
       if (this.rowNums && !this.displayedColumns.includes('_id')) {
         this.displayedColumns.unshift('_id');
-        this.columnNameMap ? this.columnNameMap['_id'] = '#' : this.columnNameMap = {'_id': '#'};
+        this.columnNameMap ? this.columnNameMap['_id'] = '#' : this.columnNameMap = {_id: '#'};
       }
       if (this.selectColumn) {
         this.displayedColumns.unshift('select');
